@@ -4,5 +4,5 @@
     Welcome to {{ title }}
   </h1>
 </div>
-<p>Counter: {{ counter }}</p>
+<p>Counter: {{ count | async }}</p>
 <button (click)="increment()">Increment</button>

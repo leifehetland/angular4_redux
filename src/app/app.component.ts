@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgRedux } from 'ng2-redux';
+import { NgRedux, select } from 'ng2-redux';
 import { IAppState } from './store';
 import { INCREMENT } from './actions';
 
@@ -10,10 +10,16 @@ import { INCREMENT } from './actions';
 })
 export class AppComponent {
   title = 'Redux';
-  counter= 0;
+  @select('counter') count;
+  // Gets us messaging.newMessages prop by using array in @select
+  // @select(['messaging', 'newMessages']) newMessages;
+  // Another way to get there
+  // @select((s: IAppState) => s.messaging.newMessages) newMessagesCount;
 
   constructor(private ngRedux: NgRedux<IAppState>) {
-
+    // ngRedux.subscribe(() => {
+    //   console.log('NGREDUX.GETSTATE()', ngRedux.getState());
+    // });
   }
 
   increment() {
